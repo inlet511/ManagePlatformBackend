@@ -9,12 +9,17 @@ module.exports = {
 
   attributes: {
 
-		name: {
-			type:'string'
+		username: {
+      type:'string',
+      required:true
 		},
-		pwd: {
-			type:'string'
-		}
+		password: {
+      type:'string',
+      required:true
+    },
+    email:{
+      type:'string'
+    }
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
