@@ -16,7 +16,10 @@ module.exports = {
 		password: {
       type:'string',
       required:true
-    },
+		},
+		role: {
+			model: 'role'
+		},
     email:{
       type:'string'
     }

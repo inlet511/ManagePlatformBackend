@@ -1,10 +1,10 @@
 module.exports = {
 
 
-  friendlyName: 'Create',
+  friendlyName: 'Add',
 
 
-  description: 'Create user.',
+  description: 'Add user.',
 
 
   inputs: {
@@ -15,7 +15,11 @@ module.exports = {
     password:{
       type:'string',
       required:true
-    },
+		},
+		role: {
+			type: 'string',
+			required:false
+		},
     email:{
       type:'string',
       required:false
@@ -32,10 +36,9 @@ module.exports = {
 
   fn: async function (inputs) {
 
-    await User.create({username:inputs.username,password:inputs.password,email:inputs.email});
+    await User.create({username:inputs.username,password:inputs.password,role:inputs.role,email:inputs.email});
     return this.res.redirect("/user/view-list");
     
-
   }
 
 

@@ -10,16 +10,16 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/user/add'
+      viewTemplatePath: 'pages/role/add'
     }
+
   },
 
 
   fn: async function () {
-		var roles = await Role.find({});
 
     // Respond with view.
-    return {roles:roles};
+    return {};
 
   }
 

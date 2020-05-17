@@ -18,19 +18,19 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
-// Local 
+// Local
 passport.use(new LocalStrategy({
-	usernameField: 'username',
-	passportField: 'password',
-}), function (username, password, cb) {
-		User.findOne({ username: username }).exec(function (err, user) {
-			if (err) return cb(err);
-			if (!user) return cb(null, false, { message: 'Username not found' });
+  usernameField: 'username',
+  passportField: 'password',
+}), (username, password, cb) => {
+  User.findOne({ username: username }).exec((err, user) => {
+    if (err) {return cb(err);}
+    if (!user) {return cb(null, false, { message: 'Username not found' });}
 
-			bcrypt.compare(password, user.password, function (err, res) {
-				if (!res) return cb(null, false, { message: 'Invalid Password' });
-				return cb(null, user, { message: 'Login Successful' });
-			});
-		});
-})
+    bcrypt.compare(password, user.password, (err, res) => {
+      if (!res) {return cb(null, false, { message: 'Invalid Password' });}
+      return cb(null, user, { message: 'Login Successful' });
+    });
+  });
+});
 */

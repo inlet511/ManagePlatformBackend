@@ -1,0 +1,46 @@
+<h1 class="display-4">Users</h1>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Password</th>
+			<th>Role</th>
+			<th>Email</th>
+			<th>Edit</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% users.forEach(function(user){ %>
+				<tr>
+					<td><%= user.id %></td>
+					<td><%= user.username %></td>					
+					<td><%= user.password %></td>
+
+					<% if (user.role) {%>
+					<td><%= user.role.name %></td>
+					<% }else{ %>
+					<td>--</td>
+					<% } %>
+
+					<td><%= user.email %></td>
+					<td><button type="button" class="btn btn-primary" onclick='sendToEdit("<%= user.id %>")'>Edit</button></td>
+				</tr>
+		<% }); %>
+	</tbody>
+</table>
+
+<script>
+	function sendToEdit(id){
+
+		var form = $(document.createElement('form'));
+    $(form).attr("action", "view-edit");
+    $(form).attr("method", "POST");
+
+    var input = $("<input>").attr("type", "hidden").attr("name", "uid").val(id);
+		$(form).append($(input));
+		form.appendTo( document.body );
+		$(form).submit();
+		
+	}
+</script>

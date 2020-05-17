@@ -15,7 +15,7 @@ module.exports = {
   exits: {
     success:{
       responseType: 'view',
-      viewTemplatePath:'user/list'
+      viewTemplatePath:'pages/user/list'
     },
     noUser:{
       description:'No user found.',
@@ -26,7 +26,8 @@ module.exports = {
 
   fn: async function (inputs) {
 
-    var users = await User.find({});
+		var users = await User.find().populate('role');
+		
 
     if(!users){throw 'noUser';}
 
