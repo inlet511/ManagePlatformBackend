@@ -33,20 +33,22 @@ module.exports = {
 
 	exits: {
 		success: {
-			responseType: 'redirect'
+			responseType: ''
 		},
 		wrongID: {
       description: 'No user with the specified ID was found in the database.',
       responseType: 'wrongID'      
+		},
+		showList: {
+			responseType:'redirect'
 		}
   },
 
 
 	fn: async function (inputs) {
-		sails.log(inputs);
 		var newRole = await Role.findOne({ id: inputs.role });
 
-		await User.updateOne({ id: inputs.id })
+		var userUpdated = await User.updateOne({ id: inputs.id })
 			.set({
 				username: inputs.username,
 				password: inputs.password,
@@ -54,10 +56,15 @@ module.exports = {
 				email:inputs.email
 			});
 		
-		
-    // All done.
-    return this.res.redirect("/user/view-list");
-
+		if (userUpdated)
+		{
+			throw {
+				showList : '/user/view-list'
+			}
+		} else
+		{
+			throw 'wrongID'
+		}
   }
 
 

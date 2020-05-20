@@ -28,21 +28,26 @@ module.exports = {
 
 
   exits: {
-    success: {
-      responseType: '',
-      description: 'Added User Successful.'
-    }
+		success: {
+			statusCode: 200,
+			responseType: '',
+			description: 'Added User Successful.'
+		},
+		redirect: {
+			responseType: 'redirect'
+
+		}
   },
 
 
   fn: async function (inputs) {
 
-    var createdRecord = await User.create({ username: inputs.username, password: inputs.password, role: inputs.role, email: inputs.email }).fetch();
-    if (createdRecord != {})
-      return {
-        status: 200,
-        userCreated: createdRecord
-      }
+		var createdRecord = await User.create({ username: inputs.username, password: inputs.password, role: inputs.role, email: inputs.email }).fetch();
+		if (createdRecord)
+		{
+			throw {redirect:'/user/view-list'};
+		}
+		return {}
 
   }
 

@@ -24,7 +24,9 @@
 					<% } %>
 
 					<td><%= user.email %></td>
-					<td><button type="button" class="btn btn-primary" onclick='sendToEdit("<%= user.id %>")'>Edit</button></td>
+					<td><button type="button" class="btn btn-primary" onclick='sendToEdit("<%= user.id %>")'>Edit</button>
+						<button type="button" class="btn btn-danger" onclick='sendToDelete("<%= user.id %>")'>Delete</button>
+					</td>
 				</tr>
 		<% }); %>
 	</tbody>
@@ -40,7 +42,17 @@
     var input = $("<input>").attr("type", "hidden").attr("name", "uid").val(id);
 		$(form).append($(input));
 		form.appendTo( document.body );
-		$(form).submit();
-		
+		$(form).submit();		
+	}
+		function sendToDelete(id){
+
+		var form = $(document.createElement('form'));
+    $(form).attr("action", "delete");
+    $(form).attr("method", "POST");
+
+    var input = $("<input>").attr("type", "hidden").attr("name", "id").val(id);
+		$(form).append($(input));
+		form.appendTo( document.body );
+		$(form).submit();		
 	}
 </script>

@@ -21,14 +21,20 @@ module.exports = {
 
   exits: {
 		success:{
-					responseType:'redirect'      
-				}
+				description:'Added a role successfuly'   
+		},
+		showRoles: {
+			responseType:'redirect'
+		}
   },
 
 
   fn: async function (inputs) {
-		await Role.create({name:inputs.name,order:inputs.order});
-    return this.res.redirect("/role/view-list");
+		var roleCreated = await Role.create({name:inputs.name,order:inputs.order}).fetch();
+		if (roleCreated)
+			throw {
+				showRoles:'/role/view-list'
+			}
   }
 
 

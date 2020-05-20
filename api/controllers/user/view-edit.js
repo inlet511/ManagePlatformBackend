@@ -29,7 +29,7 @@ module.exports = {
 
 
 	fn: async function ({ uid }) {
-		console.log(uid);
+
 		var user = await User.findOne({ id: uid }).populate('role');
 		if (!user) { throw 'notFound'; }
 
