@@ -19,4 +19,5 @@ module.exports.policies = {
 
   // '*': true,
 
+  'user/add':['redirect-to-userlist']
 };

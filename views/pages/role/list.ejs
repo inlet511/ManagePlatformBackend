@@ -2,6 +2,7 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
+			<th>Order</th>
 			<th>#</th>
 			<th>RoleName</th>
 		</tr>
@@ -9,6 +10,7 @@
 	<tbody>
 		<% roles.forEach(function(role){ %>
 				<tr>
+					<td><%= role.order %></td>
 					<td><%= role.id %></td>
 					<td><%= role.name %></td>					
 

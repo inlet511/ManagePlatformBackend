@@ -8,6 +8,10 @@ module.exports = {
 
 
   inputs: {
+    order: {
+      type: 'number',
+      required: true
+    },
 		name: {
 			type: 'string',
 			required:true
@@ -23,7 +27,7 @@ module.exports = {
 
 
   fn: async function (inputs) {
-		await Role.create({name:inputs.name});
+		await Role.create({name:inputs.name,order:inputs.order});
     return this.res.redirect("/role/view-list");
   }
 

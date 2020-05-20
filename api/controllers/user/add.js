@@ -8,37 +8,42 @@ module.exports = {
 
 
   inputs: {
-    username:{
-      type:'string',
+    username: {
+      type: 'string',
       required: true
     },
-    password:{
-      type:'string',
-      required:true
-		},
-		role: {
-			type: 'string',
-			required:false
-		},
-    email:{
-      type:'string',
-      required:false
+    password: {
+      type: 'string',
+      required: true
+    },
+    role: {
+      type: 'string',
+      required: false
+    },
+    email: {
+      type: 'string',
+      required: false
     }
   },
 
 
   exits: {
-    success:{
-      responseType:'redirect'      
+    success: {
+      responseType: '',
+      description: 'Added User Successful.'
     }
   },
 
 
   fn: async function (inputs) {
 
-    await User.create({username:inputs.username,password:inputs.password,role:inputs.role,email:inputs.email});
-    return this.res.redirect("/user/view-list");
-    
+    var createdRecord = await User.create({ username: inputs.username, password: inputs.password, role: inputs.role, email: inputs.email }).fetch();
+    if (createdRecord != {})
+      return {
+        status: 200,
+        userCreated: createdRecord
+      }
+
   }
 
 
